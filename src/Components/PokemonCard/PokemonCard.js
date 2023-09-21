@@ -7,7 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { goToDetailPage } from "../../Router/coordinator";
 
-const PokemonCard = ({ poke }) => {
+const PokemonCard = ({ poke, pokedex, setPokedex, addPokemon }) => {
   const navigate = useNavigate();
 
   return (
@@ -19,7 +19,7 @@ const PokemonCard = ({ poke }) => {
         />
       </ImgContainer>
       <ButtonContainer>
-        <button>Adicionar</button>
+        <button onClick={() => addPokemon(poke)}>Adicionar</button>
         <button onClick={() => goToDetailPage(navigate, poke.name)}>
           Ver Detalhes
         </button>
