@@ -5,14 +5,14 @@ import { PokemonListContainer } from "./style";
 
 const PokemonsListPage = ({ pokedex, setPokedex, addPokemon }) => {
   const [pokemons, setPokemons] = useState([]);
-  
+
   useEffect(() => {
     getAllPokemons(setPokemons);
   }, []);
 
   const filteredPokemons = pokemons.filter(
     (pokemon) => !pokedex.find((poke) => poke.name === pokemon.name)
-  )
+  );
 
   return (
     <PokemonListContainer>
@@ -22,7 +22,6 @@ const PokemonsListPage = ({ pokedex, setPokedex, addPokemon }) => {
             key={poke.id}
             poke={poke}
             pokedex={pokedex}
-            setPokedex={setPokedex}
             addPokemon={addPokemon}
           />
         );

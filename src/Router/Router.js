@@ -30,7 +30,16 @@ const Router = () => {
             />
           }
         />
-        <Route path="/pokedex" element={<PokedexPage />} />
+        <Route
+          path="/pokedex"
+          element={
+            <PokedexPage
+              pokedex={pokedex}
+              setPokedex={setPokedex}
+              removePokemon={removePokemon}
+            />
+          }
+        />
         <Route path="/details/:name" element={<PokemonDetailPage />} />
       </Routes>
     </BrowserRouter>
