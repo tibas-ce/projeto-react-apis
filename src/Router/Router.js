@@ -18,7 +18,11 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header
+        pokedex={pokedex}
+        setPokedex={setPokedex}
+        removePokemon={removePokemon}
+      />
       <Routes>
         <Route
           path="/"
