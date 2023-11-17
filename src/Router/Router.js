@@ -3,45 +3,23 @@ import PokemonsListPage from "../Pages/PokemonsListPage/PokemonsListPage";
 import PokedexPage from "../Pages/PokedexPage/PokedexPage";
 import PokemonDetailPage from "../Pages/PokemonDetailPage/PokemonDetailPage";
 import Header from "../Components/Header/Header";
-import { useState } from "react";
 
 const Router = () => {
-  const [pokedex, setPokedex] = useState([]);
-
-  const addPokemon = (pokemon) => {
-    setPokedex([...pokedex, pokemon]);
-  };
-
-  const removePokemon = (pokeName) => {
-    setPokedex(pokedex.filter((poke) => poke.name !== pokeName));
-  };
-
+  
   return (
     <BrowserRouter>
-      <Header
-        pokedex={pokedex}
-        setPokedex={setPokedex}
-        removePokemon={removePokemon}
-      />
+      <Header />
       <Routes>
         <Route
           path="/"
           element={
-            <PokemonsListPage
-              pokedex={pokedex}
-              setPokedex={setPokedex}
-              addPokemon={addPokemon}
-            />
+            <PokemonsListPage />
           }
         />
         <Route
           path="/pokedex"
           element={
-            <PokedexPage
-              pokedex={pokedex}
-              setPokedex={setPokedex}
-              removePokemon={removePokemon}
-            />
+            <PokedexPage />
           }
         />
         <Route path="/details/:name" element={<PokemonDetailPage />} />
