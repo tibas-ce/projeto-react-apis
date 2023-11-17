@@ -45,7 +45,7 @@ const PokemonDetailPage = () => {
         <MovesContainer>
           <TitleContainer>Principais Ataques</TitleContainer>
           {pokemon.moves?.map((poke, index) => {
-            return (index < 5 && <p>{poke.move.name}</p>);
+            return (index < 5 && <p key={index}>{poke.move.name}</p>);
           })}
         </MovesContainer>
       </PokeInfosContainer>
