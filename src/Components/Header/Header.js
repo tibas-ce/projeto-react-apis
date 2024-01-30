@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { HeaderContainer, LeftHeaderButton, RigthHeaderButton } from "./style";
+import { HeaderContainer, LeftHeaderButton, RigthHeaderButton, LogoImg } from "./style";
 import { goToPokedexPage, goToPokemonsListPage } from "../../Router/coordinator";
 import { getPokemonByName } from "../../API/requests";
 import { useContext } from "react";
-import { GlobalStateContext } from "../../Global/GlobalStateContext"
+import { GlobalStateContext } from "../../Global/GlobalStateContext";
+import pokelogo from "../../assets/pokelogo.png";
 
 const Header = () => {
-  let titlePage;
   let leftButtonText;
   let nextPage;
 
@@ -25,31 +25,29 @@ const Header = () => {
   }
 
   if (pathname === "/") {
-    titlePage = "Lista de Pokemons";
-    leftButtonText = "Ver minha pokedex";
     nextPage = () => goToPokedexPage(navigate);
   } else if (pathname === "/pokedex") {
-    titlePage = "Pokedex";
-    leftButtonText = "Voltar para lista de Pokemons";
+    leftButtonText = "Todos os Pokémons";
     nextPage = () => goToPokemonsListPage(navigate);
   } else if (pathname.includes("/details/")) {
-    titlePage = pokeName;
-    leftButtonText = "Voltar";
+    leftButtonText = "Todos os Pokémons";
     nextPage = () => goToPokemonsListPage(navigate);
   }
 
   return (
     <>
       <HeaderContainer>
-        <LeftHeaderButton onClick={nextPage}>
-          {leftButtonText}
-        </LeftHeaderButton>
-        <h1>{titlePage}</h1>
+        {pathname === "/pokedex" || pathname.includes("/details") ?
+        <LeftHeaderButton onClick={nextPage} ><u>&lt; {leftButtonText}</u></LeftHeaderButton>
+        :
+        <RigthHeaderButton onClick={nextPage} ><b>Pokédex</b></RigthHeaderButton>        
+        }
+        <LogoImg src={pokelogo} alt="logo pokemon" />
         {pathname.includes("/details/") && 
         (isPokemonInPokedex ? (
-          <RigthHeaderButton onClick={() => removePokemon(pokeName)} >Remover da Pokedex</RigthHeaderButton>
+          <RigthHeaderButton red onClick={() => removePokemon(pokeName)} >Excluir da Pokédex</RigthHeaderButton>
         ) : (
-          <RigthHeaderButton onClick={() => addPokedex(pokeName)} >Adicionara Pokedex</RigthHeaderButton>
+          <RigthHeaderButton onClick={() => addPokedex(pokeName)} >Adicionar a Pokédex</RigthHeaderButton>
         ))}
       </HeaderContainer>
     </>
