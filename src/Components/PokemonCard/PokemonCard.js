@@ -25,8 +25,8 @@ const PokemonCard = ({ poke, addPokemon, removePokemon }) => {
         <p>#{poke.id}</p>
         <h1>{poke.name}</h1>
         <div>
-          {poke.types.map((type) => {
-            return <TypeImg src={returnTypes(type.type.name)} alt="Tipos"/>
+          {poke.types.map((type, index) => {
+            return <TypeImg key={index} src={returnTypes(type.type.name)} alt="Tipos"/>
           })}
         </div>
       </InfoContainer>

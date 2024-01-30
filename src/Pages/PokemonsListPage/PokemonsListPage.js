@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { getAllPokemons } from "../../API/requests";
 import PokemonCard from "../../Components/PokemonCard/PokemonCard";
-import { PokemonListContainer } from "./style";
+import { PokemonListContainer, Title, SectionPokemons } from "./style";
 import { GlobalStateContext } from "../../Global/GlobalStateContext";
 
 const PokemonsListPage = () => {
   const [pokemons, setPokemons] = useState([]);
 
-  const { pokedex, setPokedex, addPokemon } = useContext(GlobalStateContext);
+  const { pokedex, addPokemon } = useContext(GlobalStateContext);
 
   useEffect(() => {
     getAllPokemons(setPokemons);
@@ -19,6 +19,8 @@ const PokemonsListPage = () => {
 
   return (
     <PokemonListContainer>
+      <Title>Todos os Pokémons</Title>
+      <SectionPokemons>
       {filteredPokemons.map((poke) => {
         return (
           <PokemonCard
@@ -29,6 +31,7 @@ const PokemonsListPage = () => {
           />
         );
       })}
+      </SectionPokemons>
     </PokemonListContainer>
   );
 };
